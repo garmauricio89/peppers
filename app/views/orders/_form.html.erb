@@ -1,0 +1,21 @@
+<%= form_for(order) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<%= f.text_field :quantity %>
+<div>
+<%= f.label :select %>
+<%= select_tag :item_id, options_from_collection_for_select(@items, "id", "name") %>
+</div>
+<%= f.button :submit %>
+<% end %>
